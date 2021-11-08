@@ -6,34 +6,7 @@ Today I am releasing my first open-source module, the MovementHandler!! Making t
 
 ## How to use it?
 
-This is very simple actually, you run a function in a `LocalScript` or you could say on the `Client`
-```lua
-:Initiate(Player,SprintSpeed,WalkSpeed)
-```
-
-yeah that's it...
-
-```lua
-local Player = game.Players.LocalPlayer
-local SprintSpeed = 30
-local WalkSpeed = 16
-local MovementHandler = require(game.ReplicatedStorage:WaitForChild("MovementHandler"))
-
-MovementHandler:Initiate(Player, SprintSpeed, WalkSpeed)
-```
-
-Whenever the character is added you have to initiate. As of right now I tried my best to make it dynamic so that it wouldn't break if the character dies and respawns.
-
-Let me break the arguments down a little bit:
-
-- [`Player`](https://developer.roblox.com/en-us/api-reference/class/Player)
-The Player, who's character will be affected.
-
-- [`float`](https://developer.roblox.com/en-us/articles/Numbers)  `SprintSpeed`
-This will be the `Humanoid.WalkSpeed` during sprinting
-
-- [`float`](https://developer.roblox.com/en-us/articles/Numbers)  `WalkSpeed`
-This will be the `Humanoid.WalkSpeed` during walking and crouch walking
+This is very simple actually, you put the script in `StarterCharacterScripts` and you are good to go!
 
 ## Keybinds
 - Sprint - `LeftShift`
