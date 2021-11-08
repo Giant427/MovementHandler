@@ -42,9 +42,9 @@ This will be the `Humanoid.WalkSpeed` during walking and crouch walking
 
 ## Prerequisites 
 
-- `Animation` `CrouchIdle`
-- `Animation` `CrouchWalk`
-- `Animation` `Slide`
+- [`Animation`](https://developer.roblox.com/en-us/api-reference/class/Animation) `CrouchIdle`
+- [`Animation`](https://developer.roblox.com/en-us/api-reference/class/Animation) `CrouchWalk`
+- [`Animation`](https://developer.roblox.com/en-us/api-reference/class/Animation) `Slide`
 
 ## Download
 
