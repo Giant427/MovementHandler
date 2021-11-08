@@ -29,10 +29,10 @@ Let me break the arguments down a little bit:
 - [`Player`](https://developer.roblox.com/en-us/api-reference/class/Player)
 The Player, who's character will be affected.
 
-- `float`  `SprintSpeed`
+- [`float`](https://developer.roblox.com/en-us/articles/Numbers)  `SprintSpeed`
 This will be the `Humanoid.WalkSpeed` during sprinting
 
-- `float`  `WalkSpeed`
+- [`float`](https://developer.roblox.com/en-us/articles/Numbers)  `WalkSpeed`
 This will be the `Humanoid.WalkSpeed` during walking and crouch walking
 
 ## Keybinds
