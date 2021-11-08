@@ -7,6 +7,15 @@ Today I am releasing my first open-source module, the MovementHandler!! Making t
 ## How to use it?
 
 This is very simple actually, you put the script in `StarterCharacterScripts` and you are good to go!
+In the script there are
+- [`Animation`](https://developer.roblox.com/en-us/api-reference/class/Animation) `CrouchIdle`
+- [`Animation`](https://developer.roblox.com/en-us/api-reference/class/Animation) `CrouchWalk`
+- [`Animation`](https://developer.roblox.com/en-us/api-reference/class/Animation) `Slide`
+- [`NumberValue`](https://developer.roblox.com/en-us/api-reference/class/NumberValue) `SprintSpeed`
+- [`NumberValue`](https://developer.roblox.com/en-us/api-reference/class/NumberValue) `WalkSpeed`
+
+To use the animations provided in the Script itself, you will have to upload the animations to your account and then replace the `AnimationId`s in the `Animation` objects accordingly.
+The `SprintSpeed` is the speed at which the character will sprint and the `WalkSpeed` is the speed at which the character will walk.
 
 ## Keybinds
 - Sprint - `LeftShift`
