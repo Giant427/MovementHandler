@@ -2,7 +2,7 @@ Hello fellow Developers!!
 
 ## What is MovementHandler?
 
-Today I am releasing my first open-source module, the MovementHandler!! Making things like Crouch, Sprint, Slide can be easy but kind of boring at the same time(because it's easy). It is used very frequently in a lot of games. I am working on a FPS Framework as well, and I hadn't really planned to make this, but my ego ate me up and I couldn't bear watching games having these abilities but my framework not. So I took some time and made this. It is very very easy to use, and if you have some quality animations, you could get quite a lot out of this. 
+Today I am releasing my first open-source module, the MovementHandler!! Making things like Crouch, Sprint, Slide, PRone can be easy but kind of boring at the same time(because it's easy). It is used very frequently in a lot of games. I am working on a FPS Framework as well, and I hadn't really planned to make this, but my ego ate me up and I couldn't bear watching games having these abilities but my framework not. So I took some time and made this. It is very very easy to use, and if you have some quality animations, you could get quite a lot out of this. 
 
 ## How to use it?
 
@@ -21,8 +21,9 @@ The script automatically adjusts if the character dies and respawns.
 
 ## Keybinds
 - Sprint - `LeftShift`
-- Crouch - `LeftControl` and `C`
-- Slide - `LeftControl` and `C`
+- Crouch - `C`
+- Slide - `C`
+- Prone - `C`
 
 ## License 
 ### Mozilla Public License 2.0
