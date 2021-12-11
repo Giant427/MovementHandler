@@ -6,16 +6,16 @@ Today I am releasing my first open-source module, the MovementHandler!! Making t
 
 ## How to use it?
 
-In the [Roblox Model](https://www.roblox.com/library/7933550317/MovementHandler), there are 3 `Folders`:
-- `ReplicatedStorage`
-- `ServerScriptService`
-- `StarterPlayerScripts`
+### Basic Example:
 
-By defualt, the script expects the folders to go to their respective directories like this:
+```lua
+local MovementProfile = require(game.ReplicatedStorage.MovementHandler.MovementHandler)
 
-https://gyazo.com/7a132c8b119140f75ff85f4030311be5
+MovementProfile = MovementProfile:New({Player = game.Players.GiantDefender427})
+MovementProfile:Initiate()
+```
 
-To use the animations provided in the Script itself, you will have to upload the animations to your account and then replace the `AnimationId`s in the `Animation` objects accordingly.
+To use the animations provided in the Script itself, you will have to upload the animations to your account and then replace the `AnimationIds` in the `Animation` objects accordingly.
 
 The script automatically adjusts if the character dies and respawns.
 
