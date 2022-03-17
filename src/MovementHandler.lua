@@ -31,6 +31,12 @@ MovementHandler.CameraOffsetTweens.Crouch = nil
 MovementHandler.CameraOffsetTweens.Prone = nil
 MovementHandler.CameraOffsetTweens.Slide = nil
 
+-- Event connections
+MovementHandler.onCharacterAddedConnection = nil
+MovementHandler.onHumanoidStateChangeddConnection = nil
+MovementHandler.onHumanoidRunningConnection = nil
+MovementHandler.onHumanoidJumpingConnection = nil
+
 -- States
 MovementHandler.States = {}
 MovementHandler.States.Sprinting = false
@@ -39,11 +45,16 @@ MovementHandler.States.Proning = false
 MovementHandler.States.Sliding = false
 
 -- Configurations
+MovementHandler.Enabled = false
 MovementHandler.Configurations = {}
 MovementHandler.Configurations.WalkSpeed = 16
 MovementHandler.Configurations.SprintSpeed = 30
 MovementHandler.Configurations.CrouchSpeed = 6
 MovementHandler.Configurations.ProneSpeed = 4
+MovementHandler.Configurations.SprintEnabled = true
+MovementHandler.Configurations.SlideEnabled = true
+MovementHandler.Configurations.CrouchEnabled = true
+MovementHandler.Configurations.ProneEnabled = true
 
 -- Animations
 MovementHandler.Animations = {}
@@ -71,7 +82,7 @@ function MovementHandler:Initiate()
 	-- Saftey measures incase character has already loaded
 	self.Character = self.Player.Character
 	self:GetPlayerInput()
-	self.Player.CharacterAdded:Connect(function(Model)
+	self.onCharacterAddedConnection = self.Player.CharacterAdded:Connect(function(Model)
 		self:onCharacterAdded(Model)
 	end)
 end
@@ -82,13 +93,13 @@ function MovementHandler:onCharacterAdded(Model)
 	self.Character = Model
 	self.Animator = self.Humanoid:FindFirstChildOfClass("Animator")
 	self:LoadAnimationTracks()
-	self.Humanoid.StateChanged:Connect(function(OldState, NewState)
+	self.onHumanoidStateChangedConnection = self.Humanoid.StateChanged:Connect(function(OldState, NewState)
 		self:onHumanoidStateChanged(OldState, NewState)
 	end)
-	self.Humanoid.Running:Connect(function(Speed)
+	self.onHumanoidRunningConnection = self.Humanoid.Running:Connect(function(Speed)
 		self:onHumanoidRunning(Speed)
 	end)
-	self.Humanoid.Jumping:Connect(function(Jumping)
+	self.onHumanoidJumpingConnection = self.Humanoid.Jumping:Connect(function(Jumping)
 		self:onHumanoidJumping(Jumping)
 	end)
 	self:ResetCameraOffsetTweens()
@@ -154,6 +165,7 @@ end
 
 -- Sprint
 function MovementHandler:StartSprinting()
+	if not self.Configurations.SprintEnabled then return end
 	if self.States.Crouching then
 		self:StopCrouching()
 	end
@@ -179,6 +191,7 @@ end
 
 -- Crouch
 function MovementHandler:StartCrouching()
+	if not self.Configurations.CrouchEnabled then return end
 	self.MovementState.Value = "Crouching"
 	self.States.Crouching = true
 	self.AnimationTracks.CrouchIdle:Play()
@@ -197,6 +210,7 @@ end
 
 -- Prone
 function MovementHandler:StartProning()
+	if not self.Configurations.ProneEnabled then return end
 	self.MovementState.Value = "Proning"
 	self.States.Proning = true
 	self.AnimationTracks.ProneIdle:Play()
@@ -215,6 +229,7 @@ end
 
 -- Slide
 function MovementHandler:StartSliding()
+	if not self.Configurations.SlideEnabled then return end
 	local HumanoidRootPart = self.Character.HumanoidRootPart
 	local JumpPower = self.Humanoid.JumpPower
 	local JumpHeight = self.Humanoid.JumpHeight
@@ -246,6 +261,7 @@ end
 
 -- Player input
 function MovementHandler:ProcessInput(_, InputState, InputObject)
+	if not self.Enabled then return end
 	if InputObject.KeyCode == Enum.KeyCode.LeftShift then
 		if InputState == Enum.UserInputState.Begin then
 			self:StartSprinting()
@@ -279,6 +295,29 @@ function MovementHandler:GetPlayerInput()
 	ContextActionService:SetTitle("Sprint", "Sprint")
 	ContextActionService:SetPosition(("Crouch"), UDim2.new(1, -160, 1, -60))
 	ContextActionService:SetPosition(("Sprint"), UDim2.new(1, -90, 1, -150))
+end
+
+-- Destructor
+function MovementHandler:Destroy()
+	self.Enabled = false
+	for i,_ in pairs(self.States) do
+		self.States[i] = false
+	end
+	self:StopProning()
+	self:StopCrouching()
+	self:StopSprinting()
+	self.onCharacterAddedConnection:Disconnect()
+	self.onHumanoidStateChangedConnection:Disconnect()
+	self.onHumanoidRunningConnection:Disconnect()
+	self.onHumanoidJumpingConnection:Disconnect()
+	ContextActionService:UnbindAction("Sprint")
+	ContextActionService:UnbindAction("Crouch")
+	for i,_ in pairs(self) do
+		self[i] = nil
+	end
+	for i,_ in pairs(getmetatable(self)) do
+		getmetatable(self)[i] = nil
+	end
 end
 
 -- Constructor

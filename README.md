@@ -19,6 +19,8 @@ To use the animations provided in the Script itself, you will have to upload the
 
 The script automatically adjusts if the character dies and respawns.
 
+Abilities can be enabled and disabled, plus the whole profile itself.
+
 ## Keybinds
 - Sprint - `LeftShift`
 - Crouch - `C`
