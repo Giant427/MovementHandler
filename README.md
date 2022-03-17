@@ -38,4 +38,6 @@ Read the full document [here](https://github.com/Giant427/MovementHandler/blob/m
 Get it [here](https://www.roblox.com/library/7933550317/MovementHandler)
 or from the [GitHub Repository](https://github.com/Giant427/MovementHandler)
 
+You can also download the test place [here](https://github.com/Giant427/MovementHandler/blob/main/MovementHandler-Test.rbxl)
+
 P.s. this is my first time making something open-source please go easy on me and drop your feedback!!
