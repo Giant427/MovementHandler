@@ -13,6 +13,7 @@ local MovementProfile = require(game.ReplicatedStorage.MovementHandler.MovementH
 
 MovementProfile = MovementProfile:New({Player = game.Players.GiantDefender427})
 MovementProfile:Initiate()
+MovementProfile.Enabled = true
 ```
 
 To use the animations provided in the Script itself, you will have to upload the animations to your account and then replace the `AnimationIds` in the `Animation` objects accordingly.
